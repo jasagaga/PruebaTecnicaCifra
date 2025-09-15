@@ -1,125 +1,167 @@
-📋 Sistema de Gestión de Solicitudes – Prueba Técnica Backend
-Este proyecto es una solución para la prueba técnica de desarrollo backend, cuyo objetivo es construir una API REST segura y escalable para gestionar solicitudes de soporte, usuarios y roles. Incluye una interfaz frontend para facilitar la interacción con el sistema.
+# 📋 Sistema de Gestión de Solicitudes – Prueba Técnica Backend
 
-🚀 Tecnologías Utilizadas
-Backend
-Node.js con Express
+Este proyecto es una solución para la **prueba técnica de desarrollo backend**, cuyo objetivo es construir una **API REST segura y escalable** para gestionar solicitudes de soporte, usuarios y roles. Incluye además una **interfaz frontend** para facilitar la interacción con el sistema y un **manual de usuario** que guía en el uso de la aplicación.
 
-MySQL como base de datos relacional
+---[Manual De Usuario.pdf](https://github.com/user-attachments/files/22336438/Manual.De.Usuario.pdf)
 
-JWT para autenticación
 
-bcrypt para encriptación de contraseñas
+## 🚀 Tecnologías Utilizadas
 
-CORS, rate limiting y sanitización para seguridad
+### Backend
 
-Estructura modular con repositorios, servicios y controladores
+* **Node.js** con **Express**
+* **MySQL** como base de datos relacional
+* **JWT** para autenticación
+* **bcrypt** para encriptación de contraseñas
+* Seguridad:
 
-Frontend
-React con Vite
+  * **CORS**
+  * **Rate limiting**
+  * Sanitización de datos
+* Arquitectura **modular**: controladores, servicios y repositorios
 
-React Router DOM para navegación
+### Frontend
 
-Axios para consumo de la API
+* **React** con **Vite**
+* **React Router DOM** para navegación
+* **Axios** para consumo de la API
+* **CSS** para estilos
 
-CSS para estilos
+---
 
-🛠️ Instalación
-Requisitos previos
-Node.js y npm
+## 🛠️ Instalación
 
-MySQL
+### Requisitos Previos
 
-(Opcional) nodemon para desarrollo
+* Node.js y npm
+* MySQL
+* (Opcional) **nodemon** para desarrollo
 
-Backend
-bash
-git clone https://github.com/tuusuario/pruebatecnica.git
-cd pruebatecnica/backend
+### Configuración de la Base de Datos
+
+1. Dentro del repositorio encontrarás un archivo `db.sql`.
+2. Ábrelo en tu gestor de MySQL y ejecútalo.
+3. Esto cargará la estructura predeterminada del proyecto.
+
+### Configuración del Backend
+
+```bash
+git clone https://github.com/jasagaga/PruebaTecnicaCifra.git
+cd PruebaTecnicaCifra/backend
 npm install
-Configura tu archivo .env con las credenciales de la base de datos y la clave JWT:
+```
 
-env
+* Configura tu conexión a MySQL en `backend/src/config/db.js`:
+
+```env
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=tu_clave
-DB_NAME=solicitudes_db
-JWT_SECRET=tu_clave_secreta
-Luego, inicia el servidor:
+DB_NAME=CifraPruebaTecnica
+```
 
-bash
+* Inicia el servidor:
+
+```bash
 npm run dev
-Frontend
-bash
+```
+
+### Configuración del Frontend
+
+```bash
 cd ../frontend
 npm install
 npm run dev
-🧪 Cómo Probar la Aplicación
-Registra usuarios con diferentes roles: cliente, soporte, administrador.
+```
 
-Inicia sesión con /auth/login para obtener el token JWT.
+---
 
-Usa el token para acceder a los endpoints protegidos:
+## 🧪 Cómo Probar la Aplicación
 
-POST /solicitudes – crear solicitud (cliente)
+1. Registra usuarios con diferentes roles: **cliente**, **soporte**, **administrador**.
+2. Inicia sesión usando el endpoint `/auth/login` para obtener un **token JWT**.
+3. Usa el token para acceder a los endpoints protegidos:
 
-GET /solicitudes – listar solicitudes según rol
+| Método | Endpoint              | Descripción                       | Roles         |
+| ------ | --------------------- | --------------------------------- | ------------- |
+| POST   | /solicitudes          | Crear solicitud                   | Cliente       |
+| GET    | /solicitudes          | Listar solicitudes según rol      | Todos         |
+| PUT    | /solicitudes/{id}     | Actualizar estado/respuesta       | Soporte/Admin |
+| GET    | /reportes/solicitudes | Resumen de solicitudes por estado | Admin         |
 
-PUT /solicitudes/{id} – actualizar estado/respuesta (soporte/admin)
+* Puedes usar **Postman** o la **interfaz React** para interactuar con la API.
 
-GET /reportes/solicitudes – resumen por estado
+---
 
-Puedes usar herramientas como Postman o la interfaz React para interactuar con la API.
+## ✅ Funcionalidades Implementadas
 
-✅ Funcionalidades Implementadas
-Autenticación con JWT
+* Autenticación con JWT
+* Gestión de roles: **cliente**, **soporte**, **administrador**
+* CRUD de solicitudes con control de acceso
+* Historial de cambios por solicitud
+* Reporte de solicitudes por estado
+* Seguridad básica: CORS y sanitización
+* Arquitectura modular y organizada
+* Documentación básica de endpoints
 
-Gestión de roles: cliente, soporte, administrador
+---
 
-CRUD de solicitudes con control de acceso
+## 🧩 Funcionalidades Pendientes / Futuras Mejoras
 
-Historial de cambios por solicitud
+* Notificaciones por correo al crear o actualizar solicitudes
+* Endpoint con IA o reglas básicas para sugerir respuestas automáticas
+* Tests automatizados (unitarios e integración)
+* Mejoras en la interfaz de usuario para visualización de reportes
 
-Reporte de solicitudes por estado
+---
 
-Seguridad:
+## 📁 Estructura del Proyecto
 
-Rate limiting
+### Backend
 
-Protección contra SQL Injection
-
-CORS
-
-Validaciones y sanitización de inputs
-
-Estructura limpia y modular
-
-Documentación básica de endpoints
-
-🧩 Funcionalidades Pendientes / Futuras Mejoras
-Notificaciones por correo al crear o actualizar solicitudes
-
-Endpoint con IA o reglas básicas para sugerir respuestas automáticas
-
-Tests automatizados (unitarios/integración)
-
-Mejoras en la UI para visualización de reportes
-
-📁 Estructura del Proyecto
-Código
+```
 backend/
 ├── controllers/
 ├── services/
-├── repositories/
-├── routes/
+├── utils/
+├── config/
+├── routers/
 ├── models/
 ├── middleware/
 └── index.js
+```
 
+### Frontend
+
+```
 frontend/
 ├── src/
 │   ├── components/
 │   ├── pages/
 │   ├── services/
+│   ├── styles/
 │   └── App.jsx
+│   └── Main.jsx
 └── vite.config.js
+```
+
+---
+
+## 🧩 Fotos del aplicativo
+
+### Login
+<img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/980eb080-97a6-407b-b604-bf452283d9cc" />
+
+### Registro
+<img width="1917" height="917" alt="image" src="https://github.com/user-attachments/assets/56d3991a-7a2b-47a3-acef-ed44b8854904" />
+
+### DashBoard
+<img width="1917" height="921" alt="image" src="https://github.com/user-attachments/assets/49239d16-c692-4743-8000-a8754720e907" />
+
+
+---
+
+💡 **Notas adicionales**
+
+* Asegúrate de tener MySQL corriendo antes de iniciar el backend.
+* El token JWT debe incluirse en el header `Authorization: Bearer <token>` para acceder a rutas protegidas.
